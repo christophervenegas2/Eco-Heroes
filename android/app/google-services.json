@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "660331449763",
+    "firebase_url": "https://ecoheroes-app.firebaseio.com",
+    "project_id": "ecoheroes-app",
+    "storage_bucket": "ecoheroes-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660331449763:android:9892c1a9b69761188ade16",
+        "android_client_info": {
+          "package_name": "cl.ecoheroes.userapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660331449763-d7mcbbr44u1v8pjf1opqugbe69lmkkfa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cl.ecoheroes.userapp",
+            "certificate_hash": "330bfaf8788f4a9228f68c5f7fd27d7f1a87f215"
+          }
+        },
+        {
+          "client_id": "660331449763-p75o5t5liqfa31oj61pf4heb4nlp0r1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cl.ecoheroes.userapp",
+            "certificate_hash": "b900d18b6bf298046e040075f473ad7669edfe0f"
+          }
+        },
+        {
+          "client_id": "660331449763-pp9bfh9ehkns35846m72e32a2bhrbo2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYl6eSUzhcaRmKfu-15oJpNSxzPOGPK3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660331449763-pp9bfh9ehkns35846m72e32a2bhrbo2l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660331449763-e94q16v50ftbh2rdg0e0lbfn3llrqdeo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "cl.ecoheroes.userapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

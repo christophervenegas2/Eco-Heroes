@@ -1,0 +1,14 @@
+- Who is the target audience?
+CITIZENS BETWEEN 16-40 YEARS OLD, LOCATED IN CHILE, WHO WANT TO PERFORM ECOLOGICAL TASKS
+
+- How do users obtain an account?
+TO GET AN ACCOUNT, YOU NEED TO PRESS THE BUTTON 'REGISTRARSE' IN THE LOGIN PAGE (IN THE APP) AND FILL THE FORM
+
+- Is this app meant for internal distribution in your own company, in the company of one target client, or in multiple target clients’ companies?
+THE APP ISN'T FOR INTERNAL DISTRIBUTION, IT'S JUST FOR GENERAL DISTRIBUTION VIA APPSTORE
+
+- In which countries will this app primarily be distributed?
+CHILE
+
+- If this app is meant for internal distribution, will the app be accessible by both internal and external partners? Or will it be exclusive to in-house employees?
+THE APP ISN'T FOR INTERNAL DISTRIBUTION, IT'S JUST FOR GENERAL DISTRIBUTION VIA APPSTORE
