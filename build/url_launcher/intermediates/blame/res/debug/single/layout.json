@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/custom_dialog.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/layout/notification_action_tombstone.xml"
+    }
+]

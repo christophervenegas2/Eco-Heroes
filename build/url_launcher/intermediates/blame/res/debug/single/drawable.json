@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/url_launcher/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/home/kerry/.gradle/caches/transforms-2/files-2.1/3580eb37942c286cbc6bb9991252c5c6/core-1.1.0/res/drawable/notification_bg_low.xml"
+    }
+]

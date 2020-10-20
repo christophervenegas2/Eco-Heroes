@@ -1,0 +1,9 @@
+ec/dina/flutter_facebook_auth/BuildConfig.java
+ ec.dina.flutter_facebook_auth.BuildConfig
+ec/dina/flutter_facebook_auth/FacebookAuth.java
+ ec.dina.flutter_facebook_auth.FacebookAuth
+ ec.dina.flutter_facebook_auth.FacebookAuth$1
+ ec.dina.flutter_facebook_auth.FacebookAuth$2
+ ec.dina.flutter_facebook_auth.FacebookLoginResultDelegate
+ec/dina/flutter_facebook_auth/FlutterFacebookAuthPlugin.java
+ ec.dina.flutter_facebook_auth.FlutterFacebookAuthPlugin
