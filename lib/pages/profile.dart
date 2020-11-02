@@ -18,7 +18,14 @@ class Profile extends StatefulWidget {
   final ScrollController scrollController;
   final Function setanimspeed;
   final complete, gettask;
-  const Profile({Key key, this.height, this.scrollController, this.setanimspeed, this.complete, this.gettask}) : super(key: key);
+  const Profile(
+      {Key key,
+      this.height,
+      this.scrollController,
+      this.setanimspeed,
+      this.complete,
+      this.gettask})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -106,7 +113,10 @@ class _ProfileState extends State<Profile> {
         child: new Container(
           padding: EdgeInsets.only(left: 10, top: 3, right: 10, bottom: 3),
           decoration: BoxDecoration(
-            border: Border.all(color: activated ? Color.fromRGBO(0, 218, 170, 1.0) : Colors.transparent),
+            border: Border.all(
+                color: activated
+                    ? Color.fromRGBO(0, 218, 170, 1.0)
+                    : Colors.transparent),
             borderRadius: BorderRadius.circular(10),
             shape: BoxShape.rectangle,
           ),
@@ -155,7 +165,11 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             (Container(
-              padding: EdgeInsets.only(top: AppBar().preferredSize.height + MediaQuery.of(context).padding.top + widget.height - 65),
+              padding: EdgeInsets.only(
+                  top: AppBar().preferredSize.height +
+                      MediaQuery.of(context).padding.top +
+                      widget.height -
+                      65),
               child: AnimatedOpacity(
                   opacity: opacity,
                   duration: Duration(milliseconds: 200),
@@ -169,18 +183,32 @@ class _ProfileState extends State<Profile> {
                           child: InkWell(
                             onTap: () async {
                               StorageReference sreference;
-                              PickedFile file = await ImagePicker().getImage(source: ImageSource.gallery, maxHeight: 600, maxWidth: 600);
+                              PickedFile file = await ImagePicker().getImage(
+                                  source: ImageSource.gallery,
+                                  maxHeight: 600,
+                                  maxWidth: 600);
                               if (file != null) {
                                 Uint8List image = await file.readAsBytes();
-                                sreference = FirebaseStorage().ref().child('/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}');
-                                StorageUploadTask uploadtask = sreference.putData(image);
+                                sreference = FirebaseStorage().ref().child(
+                                    '/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}');
+                                StorageUploadTask uploadtask =
+                                    sreference.putData(image);
                                 setState(() {
                                   loadingimage = true;
                                 });
                                 uploadtask.onComplete.then(
                                   (value) => {
-                                    FirebaseFirestore.instance.collection('users').doc(userprovider.userinfo['id']).update({'profile_picture': '/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}'}),
-                                    userprovider.userinfo.addAll({"profile_picture": "/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}"}),
+                                    FirebaseFirestore.instance
+                                        .collection('users')
+                                        .doc(userprovider.userinfo['id'])
+                                        .update({
+                                      'profile_picture':
+                                          '/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}'
+                                    }),
+                                    userprovider.userinfo.addAll({
+                                      "profile_picture":
+                                          "/profile/${userprovider.userinfo["id"]}/${file.path.split('/').last}"
+                                    }),
                                     setState(() {
                                       loadingimage = false;
                                     }),
@@ -194,20 +222,32 @@ class _ProfileState extends State<Profile> {
                                 Image(
                                   fit: BoxFit.cover,
                                   alignment: Alignment.center,
-                                  image: userprovider.userinfo['profile_picture'].contains('://')
-                                      ? NetworkImage(userprovider.userinfo['profile_picture'])
-                                      : FirebaseImage('gs://ecoheroes-app.appspot.com' + userprovider.userinfo['profile_picture'],
-                                          shouldCache: true, // The image should be cached (default: True)
-                                          maxSizeBytes: 3000 * 1000, // 3MB max file size (default: 2.5MB)
+                                  image: userprovider
+                                          .userinfo['profile_picture']
+                                          .contains('://')
+                                      ? NetworkImage(userprovider
+                                          .userinfo['profile_picture'])
+                                      : FirebaseImage(
+                                          'gs://ecoheroes-app.appspot.com' +
+                                              userprovider
+                                                  .userinfo['profile_picture'],
+                                          shouldCache:
+                                              true, // The image should be cached (default: True)
+                                          maxSizeBytes: 3000 *
+                                              1000, // 3MB max file size (default: 2.5MB)
                                           scale: 3
                                           // Switch off update checking
                                           ),
                                 ),
-                                loadingimage ? Container(color: Color.fromRGBO(0, 0, 0, 0.3)) : SizedBox.shrink(),
+                                loadingimage
+                                    ? Container(
+                                        color: Color.fromRGBO(0, 0, 0, 0.3))
+                                    : SizedBox.shrink(),
                                 loadingimage
                                     ? Center(
                                         child: CircularProgressIndicator(
-                                        valueColor: AlwaysStoppedAnimation(Color(0xFF4AD6A7)),
+                                        valueColor: AlwaysStoppedAnimation(
+                                            Color(0xFF4AD6A7)),
                                         strokeWidth: 3,
                                       ))
                                     : SizedBox.shrink(),
@@ -217,19 +257,31 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 20)),
-                      Text('${userprovider.userinfo['firstname']} ${userprovider.userinfo['lastname']}', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 25)),
+                      Text(
+                          '${userprovider.userinfo['firstname']} ${userprovider.userinfo['lastname']}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 25)),
                       Padding(padding: EdgeInsets.only(bottom: 5)),
-                      Text('@${userprovider.userinfo['username']}', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 17)),
+                      Text('@${userprovider.userinfo['username']}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 17)),
                       Padding(padding: EdgeInsets.only(bottom: 20)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           TOColorButton(
                             text: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 26.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 26.0),
                               child: Row(
                                 children: <Widget>[
-                                  Text('${userprovider.ecopoints} Puntos', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 17)),
+                                  Text('${userprovider.ecopoints} Puntos',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 17)),
                                 ],
                               ),
                             ),
@@ -248,7 +300,8 @@ class _ProfileState extends State<Profile> {
                           Padding(padding: EdgeInsets.only(left: 10)),
                           TOColorButton(
                             text: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 26.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 26.0),
                               child: Row(
                                 children: <Widget>[
                                   Icon(
@@ -259,7 +312,11 @@ class _ProfileState extends State<Profile> {
                                   Padding(
                                     padding: EdgeInsets.only(right: 2),
                                   ),
-                                  Text('${userprovider.leafpoints}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 17)),
+                                  Text('${userprovider.leafpoints}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 17)),
                                 ],
                               ),
                             ),

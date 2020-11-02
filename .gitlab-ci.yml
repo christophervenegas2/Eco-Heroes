@@ -1,0 +1,36 @@
+stages:
+  - build
+
+before_script:
+  - shopt -s expand_aliases
+  - alias flutter=~/Documents/flutter_1/bin/flutter
+  - flutter pub get
+  - flutter clean
+
+build_android:
+  stage: build
+
+  script:
+    - flutter build apk
+
+  tags:
+    - macos
+
+  only:
+    - merge_requests
+    - master
+    - develop
+
+build_ios:
+  stage: build
+
+  script:
+    - flutter build ios
+
+  tags:
+    - macos
+
+  only:
+    - merge_requests
+    - master
+    - develop

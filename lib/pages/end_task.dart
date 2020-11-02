@@ -66,7 +66,7 @@ class _EndTaskState extends State<EndTask> {
             style: TextStyle(color: Colors.white),
           ),
           showBadge: badges[element.replaceAll('\n', ' ')] == 0 ? false : true,
-          position: BadgePosition.topRight(right: -5, top: -9),
+          position: BadgePosition.topEnd(end: -5, top: -9),
           padding: EdgeInsets.all(8),
           child: Container(
             width: double.infinity,
@@ -105,7 +105,9 @@ class _EndTaskState extends State<EndTask> {
                       InkWell(
                         onTap: () {
                           setState(() {
-                            badges[element.replaceAll('\n', ' ')] = badges[element.replaceAll('\n', ' ')] == 0 ? 0 : badges[element.replaceAll('\n', ' ')] - 1;
+                            badges[element.replaceAll('\n', ' ')] = badges[element.replaceAll('\n', ' ')] == 0
+                                ? 0
+                                : badges[element.replaceAll('\n', ' ')] - 1;
                           });
                         },
                         child: Icon(
@@ -177,7 +179,8 @@ class _EndTaskState extends State<EndTask> {
                                       'gs://ecoheroes-app.appspot.com/tasks/' + widget.task['cover'],
                                       shouldCache: true, // The image should be cached (default: True)
                                       maxSizeBytes: 3000 * 1000, // 3MB max file size (default: 2.5MB)
-                                      cacheRefreshStrategy: CacheRefreshStrategy.BY_METADATA_DATE, // Switch off update checking
+                                      cacheRefreshStrategy:
+                                          CacheRefreshStrategy.BY_METADATA_DATE, // Switch off update checking
                                     ),
                                   ),
                                 ),
@@ -237,7 +240,10 @@ class _EndTaskState extends State<EndTask> {
                                 Icon(CustomIcon.check_outline_circle, size: 120, color: Color(0xFF163B4D)),
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-                                  child: Text('Muy bien!, has terminado el desafío, pasará al estado "Revisión".\n\nDentro de 24 horas nuestro equipo comprobará que reportaste el desafío y se te cargará tu recompensa en la sección "Mis Cupones" de tu Perfil en la App.', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w700)),
+                                  child: Text(
+                                      'Muy bien!, has terminado el desafío, pasará al estado "Revisión".\n\nDentro de 24 horas nuestro equipo comprobará que reportaste el desafío y se te cargará tu recompensa en la sección "Mis Cupones" de tu Perfil en la App.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.w700)),
                                 )
                               ],
                             )
@@ -246,7 +252,11 @@ class _EndTaskState extends State<EndTask> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 13),
                                 ),
-                                Container(width: double.infinity, padding: EdgeInsets.only(left: 13), child: Text('Donde realizaste el desafío:', style: TextStyle(fontWeight: FontWeight.w700))),
+                                Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(left: 13),
+                                    child: Text('Donde realizaste el desafío:',
+                                        style: TextStyle(fontWeight: FontWeight.w700))),
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 13),
                                 ),
@@ -261,7 +271,10 @@ class _EndTaskState extends State<EndTask> {
                                     texterror: 'Debes ingresar la comuna',
                                   ),
                                 ),
-                                Container(width: double.infinity, padding: EdgeInsets.only(left: 13), child: Text('Reporta tu desafío', style: TextStyle(fontWeight: FontWeight.w700))),
+                                Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(left: 13),
+                                    child: Text('Reporta tu desafío', style: TextStyle(fontWeight: FontWeight.w700))),
                                 Padding(padding: EdgeInsets.only(bottom: 13)),
                                 widget.task['report'] == null
                                     ? SizedBox.shrink()
@@ -283,7 +296,9 @@ class _EndTaskState extends State<EndTask> {
                                           padding: const EdgeInsets.all(20.0),
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: <Widget>[Text(widget.task['report'].toString().replaceAll('\\n', '\n'))],
+                                            children: <Widget>[
+                                              Text(widget.task['report'].toString().replaceAll('\\n', '\n'))
+                                            ],
                                           ),
                                         ),
                                       ),
@@ -342,7 +357,13 @@ class _EndTaskState extends State<EndTask> {
                                                   loadingbutton = true;
                                                   error = false;
                                                 }),
-                                                await firestore.collection('users').doc(userprovider.userinfo['id']).collection('tasks').where('id', isEqualTo: widget.task['id']).get().then(
+                                                await firestore
+                                                    .collection('users')
+                                                    .doc(userprovider.userinfo['id'])
+                                                    .collection('tasks')
+                                                    .where('id', isEqualTo: widget.task['id'])
+                                                    .get()
+                                                    .then(
                                                       (value) async => {
                                                         if (value.docs.length == 1)
                                                           {
@@ -355,20 +376,26 @@ class _EndTaskState extends State<EndTask> {
                                                               {
                                                                 newinfo.addAll({'counters': badges})
                                                               },
-                                                            await firestore.collection('users').doc(userprovider.userinfo['id']).collection('tasks').doc(value.docs.single.id).update(newinfo).then((value) => {
-                                                                  widget.gettask(2),
-                                                                  Timer(Duration(seconds: 1), () {
-                                                                    if (mounted) {
-                                                                      setState(() {
-                                                                        loadingbutton = false;
-                                                                        check = true;
-                                                                      });
-                                                                    }
-                                                                  }),
-                                                                  Timer(Duration(seconds: 20), () {
-                                                                    Navigator.pop(context);
-                                                                  }),
-                                                                }),
+                                                            await firestore
+                                                                .collection('users')
+                                                                .doc(userprovider.userinfo['id'])
+                                                                .collection('tasks')
+                                                                .doc(value.docs.single.id)
+                                                                .update(newinfo)
+                                                                .then((value) => {
+                                                                      widget.gettask(2),
+                                                                      Timer(Duration(seconds: 1), () {
+                                                                        if (mounted) {
+                                                                          setState(() {
+                                                                            loadingbutton = false;
+                                                                            check = true;
+                                                                          });
+                                                                        }
+                                                                      }),
+                                                                      Timer(Duration(seconds: 20), () {
+                                                                        Navigator.pop(context);
+                                                                      }),
+                                                                    }),
                                                           }
                                                       },
                                                     ),

@@ -6,6 +6,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:ecoheroes/models/user.dart' as userM;
 
 class UserProvider with ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -34,7 +35,8 @@ class UserProvider with ChangeNotifier {
     };
   }
 
-  void togglearticlelike(String articleid, bool like, String section, int quantity) {
+  void togglearticlelike(
+      String articleid, bool like, String section, int quantity) {
     var batch = firestore.batch();
     var docrefuser = firestore.collection('users').doc(userinfo['id']);
     var docrefactive = firestore.collection('articles-active').doc(section);
@@ -87,13 +89,16 @@ class UserProvider with ChangeNotifier {
       case FacebookAuthLoginResponse.ok:
         try {
           // Create a credential from the access token
-          final FacebookAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(result.accessToken.token);
+          final FacebookAuthCredential facebookAuthCredential =
+              FacebookAuthProvider.credential(result.accessToken.token);
 
           // Once signed in, return the UserCredential
-          UserCredential resultauth = await auth.signInWithCredential(facebookAuthCredential);
+          UserCredential resultauth =
+              await auth.signInWithCredential(facebookAuthCredential);
           // get the user data
           final token = result.accessToken.token;
-          final graphResponse = await http.get('https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.width(200).height(200)&access_token=$token');
+          final graphResponse = await http.get(
+              'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.width(200).height(200)&access_token=$token');
           final profile = jsonDecode(graphResponse.body);
           await trySignUp(profile);
           user = resultauth.user;
@@ -104,7 +109,8 @@ class UserProvider with ChangeNotifier {
         } catch (e) {
           String message;
           if (e.code == 'account-exists-with-different-credential') {
-            message = 'Esta cuenta no esta registrada con facebook, intenta iniciar con tu mail y contraseña';
+            message =
+                'Esta cuenta no esta registrada con facebook, intenta iniciar con tu mail y contraseña';
           } else if (e['code'] == '0' || e['code'] == '1') {
             message = e['message'];
           } else {
@@ -125,7 +131,8 @@ class UserProvider with ChangeNotifier {
       default:
         return ({
           'fail': true,
-          'message': 'Inicio Sesión fallido, intente con otra vez o con otro metodo',
+          'message':
+              'Inicio Sesión fallido, intente con otra vez o con otro metodo',
         });
     }
   }
@@ -139,20 +146,24 @@ class UserProvider with ChangeNotifier {
     ).signIn();
     if (resultgoogleuser != null) {
       try {
-        final GoogleSignInAuthentication googleAuth = await resultgoogleuser.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await resultgoogleuser.authentication;
 
         final GoogleAuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
-        UserCredential resultauth = await FirebaseAuth.instance.signInWithCredential(credential);
+        UserCredential resultauth =
+            await FirebaseAuth.instance.signInWithCredential(credential);
         Map<String, dynamic> idMap = parseJwt(googleAuth.idToken);
         var profile = {
           'first_name': idMap["given_name"],
           'last_name': idMap["family_name"],
           'email': resultgoogleuser.email,
           'picture': {
-            'data': {'url': resultgoogleuser.photoUrl.replaceAll('s96-c', 's200-c')}
+            'data': {
+              'url': resultgoogleuser.photoUrl.replaceAll('s96-c', 's200-c')
+            }
           },
         };
         await trySignUp(profile);
@@ -164,7 +175,8 @@ class UserProvider with ChangeNotifier {
       } catch (e) {
         String message;
         if (e.code == 'account-exists-with-different-credential') {
-          message = 'Esta cuenta no esta registrada con google, intenta iniciar con tu mail y contraseña';
+          message =
+              'Esta cuenta no esta registrada con google, intenta iniciar con tu mail y contraseña';
         } else if (e['code'] == '0' || e['code'] == '1') {
           message = e['message'];
         } else {
@@ -178,7 +190,8 @@ class UserProvider with ChangeNotifier {
     } else {
       return ({
         'fail': true,
-        'message': 'Inicio Sesión fallido, intente con otra vez o con otro metodo',
+        'message':
+            'Inicio Sesión fallido, intente con otra vez o con otro metodo',
       });
     }
   }
@@ -187,7 +200,8 @@ class UserProvider with ChangeNotifier {
   Future<Map<String, dynamic>> loginApple() async {
     if (await SignInWithApple.isAvailable()) {
       try {
-        final AuthorizationCredentialAppleID result = await SignInWithApple.getAppleIDCredential(
+        final AuthorizationCredentialAppleID result =
+            await SignInWithApple.getAppleIDCredential(
           scopes: [
             AppleIDAuthorizationScopes.email,
             AppleIDAuthorizationScopes.fullName,
@@ -198,7 +212,8 @@ class UserProvider with ChangeNotifier {
           idToken: result.identityToken,
           accessToken: result.authorizationCode,
         );
-        UserCredential resultauth = await FirebaseAuth.instance.signInWithCredential(credential);
+        UserCredential resultauth =
+            await FirebaseAuth.instance.signInWithCredential(credential);
         var profile = {
           'first_name': result.givenName,
           'last_name': result.familyName,
@@ -216,7 +231,8 @@ class UserProvider with ChangeNotifier {
       } catch (e) {
         String message;
         if (e.code == 'account-exists-with-different-credential') {
-          message = 'Esta cuenta no esta registrada con apple, intenta iniciar con tu mail y contraseña';
+          message =
+              'Esta cuenta no esta registrada con apple, intenta iniciar con tu mail y contraseña';
         } else {
           message = 'Hubo un error, por favor intente nuevamente';
         }
@@ -228,13 +244,18 @@ class UserProvider with ChangeNotifier {
     } else {
       return ({
         'fail': true,
-        'message': 'Apple Sign In no esta disponible para la versión de tu iOS, es posible que debas actualizarlo',
+        'message':
+            'Apple Sign In no esta disponible para la versión de tu iOS, es posible que debas actualizarlo',
       });
     }
   }
 
   Future<void> trySignUp(profile) async {
-    var response = await firestore.collection('users').where('email', isEqualTo: profile['email']).get().catchError((onError) {
+    var response = await firestore
+        .collection('users')
+        .where('email', isEqualTo: profile['email'])
+        .get()
+        .catchError((onError) {
       print(onError);
       throw ({
         'code': '0',
@@ -278,5 +299,50 @@ class UserProvider with ChangeNotifier {
       return null;
     }
     return payloadMap;
+  }
+
+  Future getUserById(String id) async {
+    userM.User user;
+
+    try {
+      await firestore
+          .collection('users')
+          .doc(id)
+          .get()
+          .then((DocumentSnapshot value) {
+        user = userM.User.fromJson(value.data());
+        user.id = value.id;
+      });
+    } catch (e) {
+      print(e);
+    }
+
+    notifyListeners();
+    return user;
+  }
+
+  void togglepublactionlike(String userid,
+      String publicationid, bool like, int quantity) {
+    var batch = firestore.batch();
+    var docrefuser = firestore.collection('users').doc(userid);
+    var docrefpub = firestore.collection('publications').doc(publicationid);
+
+    if (!like) {
+      batch.update(docrefuser, {
+        'publications_likes': FieldValue.arrayUnion([publicationid])
+      });
+      batch.update(docrefpub, {'likes': FieldValue.increment(1)});
+    } else {
+      if (quantity > 0) {
+        batch.update(firestore.collection('users').doc(userid), {
+          'publications_likes': FieldValue.arrayRemove([publicationid])
+        });
+        batch.update(docrefpub, {'likes': FieldValue.increment(-1)});
+      }
+    }
+
+    batch.commit();
+
+    notifyListeners();
   }
 }

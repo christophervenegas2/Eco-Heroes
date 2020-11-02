@@ -1,4 +1,5 @@
 import 'package:ecoheroes/provider/articlesprovider.dart';
+import 'package:ecoheroes/provider/publicationsprovider.dart';
 import 'package:ecoheroes/provider/staticprovider.dart';
 import 'package:ecoheroes/provider/userprovider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ArticlesProvider()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => StaticProvider()),
+        ChangeNotifierProvider(create: (context) => PublicationsProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

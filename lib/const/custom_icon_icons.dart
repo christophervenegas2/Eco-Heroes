@@ -27,6 +27,7 @@ class CustomIcon {
   CustomIcon._();
 
   static const _kFontFam = 'CustomIcon';
+  static const _kFontFam2 = 'CustomIcon2';
   static const _kFontPkg = null;
 
   static const IconData discount = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -48,4 +49,7 @@ class CustomIcon {
   static const IconData tree_filled = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData news = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData ecobrick = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData lightbulb = IconData(0xe801, fontFamily: _kFontFam2, fontPackage: _kFontPkg);
+  static const IconData instagram = IconData(0xf16d, fontFamily: _kFontFam2, fontPackage: _kFontPkg);
+  static const IconData attention = IconData(0xe800, fontFamily: _kFontFam2, fontPackage: _kFontPkg);
 }

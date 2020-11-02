@@ -5,13 +5,11 @@
 // this is simply Flutter's version of that.
 
 import 'package:flutter_driver/flutter_driver.dart';
-import 'package:screenshots/screenshots.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('end-to-end test', () {
     FlutterDriver driver;
-    final config = Config();
 
     setUpAll(() async {
       // Connect to a running Flutter application instance.
@@ -23,7 +21,6 @@ void main() {
     });
 
     Future<void> takescreenshot(String name) async {
-      await screenshot(driver, config, name);
       await Future.delayed(Duration(milliseconds: 500));
     }
 

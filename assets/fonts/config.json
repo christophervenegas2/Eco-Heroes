@@ -229,9 +229,27 @@
       "src": "fontawesome"
     },
     {
+      "uid": "71064f0fa3be043351efdcaea9c5b8ea",
+      "css": "instagram",
+      "code": 61805,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "599d6c088f4a1c64611b989459d65f6b",
+      "css": "lightbulb",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
       "uid": "f3dc2d6d8fe9cf9ebff84dc260888cdf",
       "css": "heart-empty",
       "code": 59403,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c76b7947c957c9b78b11741173c8349b",
+      "css": "attention",
+      "code": 59392,
       "src": "fontawesome"
     },
     {

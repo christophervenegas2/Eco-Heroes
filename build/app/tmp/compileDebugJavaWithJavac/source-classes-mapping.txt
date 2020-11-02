@@ -252,6 +252,8 @@ androidx/customview/R.java
  androidx.customview.R$styleable
 com/google/firebase/iid/R.java
  com.google.firebase.iid.R
+androidx/exifinterface/R.java
+ androidx.exifinterface.R
 com/google/firebase/auth/R.java
  com.google.firebase.auth.R
 com/google/android/gms/stats/R.java
@@ -268,6 +270,8 @@ androidx/legacy/coreutils/R.java
  androidx.legacy.coreutils.R$string
  androidx.legacy.coreutils.R$style
  androidx.legacy.coreutils.R$styleable
+com/google/android/gms/cloudmessaging/R.java
+ com.google.android.gms.cloudmessaging.R
 com/google/firebase/components/R.java
  com.google.firebase.components.R
 io/flutter/plugins/flutter_plugin_android_lifecycle/R.java
@@ -397,6 +401,8 @@ com/tekartik/sqflite/R.java
  com.tekartik.sqflite.R$styleable
 com/google/android/gms/ads_identifier/R.java
  com.google.android.gms.ads_identifier.R
+androidx/heifwriter/R.java
+ androidx.heifwriter.R
 com/google/android/datatransport/backend/cct/R.java
  com.google.android.datatransport.backend.cct.R
 com/google/android/exoplayer2/source/smoothstreaming/R.java
@@ -644,6 +650,18 @@ androidx/loader/R.java
  androidx.loader.R$styleable
 com/google/android/exoplayer2/source/hls/R.java
  com.google.android.exoplayer2.source.hls.R
+com/example/flutterimagecompress/R.java
+ com.example.flutterimagecompress.R
+ com.example.flutterimagecompress.R$attr
+ com.example.flutterimagecompress.R$color
+ com.example.flutterimagecompress.R$dimen
+ com.example.flutterimagecompress.R$drawable
+ com.example.flutterimagecompress.R$id
+ com.example.flutterimagecompress.R$integer
+ com.example.flutterimagecompress.R$layout
+ com.example.flutterimagecompress.R$string
+ com.example.flutterimagecompress.R$style
+ com.example.flutterimagecompress.R$styleable
 androidx/slidingpanelayout/R.java
  androidx.slidingpanelayout.R
  androidx.slidingpanelayout.R$attr

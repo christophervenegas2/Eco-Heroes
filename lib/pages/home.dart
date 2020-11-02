@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecoheroes/pages/articles.dart';
+import 'package:ecoheroes/pages/publications.dart';
 import 'package:ecoheroes/provider/articlesprovider.dart';
+import 'package:ecoheroes/provider/publicationsprovider.dart';
 import 'package:ecoheroes/provider/staticprovider.dart';
 import 'package:ecoheroes/provider/userprovider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -46,9 +48,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     final articlesprovider = Provider.of<ArticlesProvider>(context, listen: false);
     final staticprovider = Provider.of<StaticProvider>(context, listen: false);
     final userprovider = Provider.of<UserProvider>(context, listen: false);
+    final publicationsprovider = Provider.of<PublicationsProvider>(context, listen: false);
     await articlesprovider.getactivenews();
     await articlesprovider.getactiveecoinventions();
     await articlesprovider.getactivetutorials();
+    await publicationsprovider.getPublications();
     await staticprovider.init();
     await firestore.collection('users').where('email', isEqualTo: widget.user.email).get().then((value) => {
           setState(() {
@@ -106,8 +110,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       }
                     else if (e.data()['status'] == 'complete')
                       {
-                        userprovider.ecopoints += int.parse(e.data()['yougetpoints'] == null ? '0' : e.data()['yougetpoints']),
-                        userprovider.leafpoints += int.parse(e.data()['yougetleaf'] == null ? '0' : e.data()['yougetleaf']),
+                        userprovider.ecopoints +=
+                            int.parse(e.data()['yougetpoints'] == null ? '0' : e.data()['yougetpoints']),
+                        userprovider.leafpoints +=
+                            int.parse(e.data()['yougetleaf'] == null ? '0' : e.data()['yougetleaf']),
                         if (e.data()['counters'] != null)
                           {
                             e.data()['counters'].forEach(
@@ -116,7 +122,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       {
                                         staticprovider.counters[staticprovider.dictionary[key]]['contribution'].forEach(
                                           (el) => {
-                                            userprovider.contribution[el] += element * staticprovider.counters[staticprovider.dictionary[key]]['conversion'],
+                                            userprovider.contribution[el] += element *
+                                                staticprovider.counters[staticprovider.dictionary[key]]['conversion'],
                                           },
                                         ),
                                       },
@@ -210,14 +217,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           backgroundColor: Colors.transparent,
           elevation: 0,
           selectedItemColor: Color(0xFF4AD6A7),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.grey,
           showUnselectedLabels: false,
           showSelectedLabels: false,
           currentIndex: tab,
           onTap: (newIndex) => {
             setState(() {
               tab = newIndex;
-              height = newIndex == 2 ? 60 : 0;
-              opacity = newIndex == 2 ? 1 : 0;
+              height = newIndex == 3 ? 60 : 0;
+              opacity = newIndex == 3 ? 1 : 0;
               if ((tab == 0 || tab == 1) && scrollController.hasClients) {
                 animationspeed = 100;
                 scrollController.jumpTo(0.0);
@@ -231,6 +240,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 key: Key('tasks-bottombar'),
               ),
               title: Text('Buscar'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CustomIcon.lightbulb,
+                key: Key('publications-bottombar'),
+              ),
+              title: Text('Publicaciones'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -259,7 +275,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       child: (Scaffold(
         body: loading
             ? Container(
-                decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xFF4AD6A7), Color(0xFF4AD6CC)], transform: GradientRotation(vectormath.radians(45)))),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0xFF4AD6A7), Color(0xFF4AD6CC)],
+                        transform: GradientRotation(vectormath.radians(45)))),
                 child: Center(
                   child: Hero(
                     tag: 'logo',
@@ -293,6 +312,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             : SizedBox.shrink(),
                         tab == 1
                             ? Expanded(
+                                child: Publications(),
+                              )
+                            : SizedBox.shrink(),
+                        tab == 2
+                            ? Expanded(
                                 child: Articles(),
                               )
                             : SizedBox.shrink(),
@@ -301,7 +325,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Column(
                       children: <Widget>[
                         Expanded(
-                          child: tab == 2
+                          child: tab == 3
                               ? Profile(
                                   complete: complete,
                                   height: height,

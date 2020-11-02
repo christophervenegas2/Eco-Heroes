@@ -1,6 +1,8 @@
 io/flutter/plugins/webviewflutter/FlutterWebView.java
  io.flutter.plugins.webviewflutter.FlutterWebView
  io.flutter.plugins.webviewflutter.FlutterWebView$1
+ io.flutter.plugins.webviewflutter.FlutterWebView$FlutterWebChromeClient
+ io.flutter.plugins.webviewflutter.FlutterWebView$FlutterWebChromeClient$1
 io/flutter/plugins/webviewflutter/ThreadedInputConnectionProxyAdapterView.java
  io.flutter.plugins.webviewflutter.ThreadedInputConnectionProxyAdapterView
 io/flutter/plugins/webviewflutter/FlutterCookieManager.java
