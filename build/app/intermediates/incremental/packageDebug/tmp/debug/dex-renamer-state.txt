@@ -1,4 +1,4 @@
-#Mon Nov 02 12:20:19 CLST 2020
+#Tue Nov 10 15:30:17 CLST 2020
 base.2=/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex
 base.1=/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/app/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
 base.0=/home/kerry/Escritorio/OpIt/mini-ecoheroes/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
